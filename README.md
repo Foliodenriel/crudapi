@@ -1,22 +1,22 @@
 Small basic CRUD API in NestJS using OpenFoodFact API.
 
-##### Main features:
+### Main features:
 
- - ** Allow user to sign in with login and password **
+ - **Allow user to sign in with login and password**
 
  Should I create a database or login and sign in through OpenFoodFact ?
  
- - ** Allow user to authenticate with login and password **
+ - **Allow user to authenticate with login and password**
 
- - ** While authenticated, allow user to make product research using OpenFoodFact API **
+ - **While authenticated, allow user to make product research using OpenFoodFact API**
 
 
-##### Side features:
+### Side features:
 
-- ** Allow user update **
+- **Allow user update**
 
-- ** Caching system for OpenFoodFact API calls **
+- **Caching system for OpenFoodFact API calls**
 
-- ** Dockerisation **
+- **Dockerisation**
 
-- ** Manifest kubernetes for deployment **
+- **Manifest kubernetes for deployment**
