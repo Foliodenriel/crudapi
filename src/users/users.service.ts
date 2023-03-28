@@ -14,7 +14,7 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const cUser = this.findOneByLogin(createUserDto.login);
+    const cUser = await this.findOneByLogin(createUserDto.login);
     if (cUser) throw new HttpException('User already exists with same login.', HttpStatus.CONFLICT);
 
     const newUser = new User();
@@ -26,8 +26,12 @@ export class UsersService {
     return this.usersRepository.save(newUser);
   }
 
-  findOneByLogin(login: string): Promise<User | undefined> {
-    const cUser = this.usersRepository.findOneBy({ login: login });
+  async login(createUserDto: CreateUserDto) {
+
+  }
+
+  findOneByLogin(login: string): Promise<User> {
+    const cUser = this.usersRepository.findOneBy({ login });
     return cUser;
   }
 

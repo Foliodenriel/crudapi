@@ -12,6 +12,16 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
+  @Post()
+  login(@Body() CreateUserDto: CreateUserDto) {
+    return this.usersService.login(CreateUserDto);
+  }
+
+  @Get('protected')
+  getHello(): string {
+    return 'Hello There';
+  }
+
   // @Get()
   // findAll() {
   //   return this.usersService.findAll();

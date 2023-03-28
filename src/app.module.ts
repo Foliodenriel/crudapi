@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { User } from './users/entities/user.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthService } from './auth/auth.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,11 +26,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
         entities: [User],
-        // synchronize: true
+        synchronize: true
       })
     }),
-    UsersModule],
+    UsersModule,
+    AuthModule],
   controllers: [UsersController],
-  providers: [UsersService],
+  providers: [UsersService, AuthService],
 })
 export class AppModule {}
