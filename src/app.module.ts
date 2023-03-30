@@ -8,6 +8,7 @@ import { User } from './users/entities/user.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     UsersModule,
     AuthModule],
-  controllers: [UsersController],
+  controllers: [UsersController, AppController],
   providers: [UsersService, AuthService],
 })
 export class AppModule {}

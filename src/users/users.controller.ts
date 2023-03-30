@@ -1,20 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Logger, Request, Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  private logger: Logger;
+  constructor(private readonly usersService: UsersService) {
+    this.logger = new Logger();
+  }
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
-  }
-
-  @Post()
-  login(@Body() CreateUserDto: CreateUserDto) {
-    return this.usersService.login(CreateUserDto);
   }
 
   @Get('protected')
