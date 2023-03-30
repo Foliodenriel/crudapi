@@ -7,13 +7,13 @@ The requirements for this project are the followings:
 
 -----
 
-### **Routes**
+##### **Routes**
 
 Some routes require a valid JSON Web Token (JWT) in order to get accessible.
 Routes marked as PUBLIC are accessible without this token unlike PRIVATE routes which requires it.
 This token should be passed through 
 
-`**PUBLIC** - [POST] /users` : Create new user if login is not already taken
+**PUBLIC** - `[POST] /users` : Create new user if login is not already taken
 ```
 {
     "login": "yourvalidemail@gmail.com",
@@ -21,7 +21,8 @@ This token should be passed through
 }
 ```
 
-`**PRIVATE** - [PATCH] /users` : Allow user to update is password using valid token and login
+
+**PRIVATE** - `[PATCH] /users` : Allow user to update is password using valid token and login
 ```
 {
     "username": "yourvalidemail@gmail.com",
@@ -29,7 +30,8 @@ This token should be passed through
 }
 ```
 
-`**PUBLIC** - [POST] /auth/generateToken` : Generate a 5 minutes valid token to access specific routes
+
+**PUBLIC** - `[POST] /auth/generateToken` : Generates a 5 minutes valid token to access specific routes
 ```
 {
     "username": "yourvalidemail@gmail.com",
@@ -37,7 +39,8 @@ This token should be passed through
 }
 ```
 
-`**PRIVATE** - [GET] /product` : Get product information based on barcode number using OpenFoodFact API
+
+**PRIVATE** - `[GET] /product` : Get product information based on barcode number using OpenFoodFact API
 ```
 {
     "product": "7622210449283",
