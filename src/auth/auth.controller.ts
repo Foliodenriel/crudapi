@@ -7,8 +7,8 @@ export class AuthController {
 
     constructor(private readonly authService: AuthService) {}
 
-    @Post('login')
-    async login(@Body() req) {
+    @Post('generateToken')
+    async generateToken(@Body() req) {
         return this.authService.login(req);
     }
 }

@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -19,8 +20,8 @@ export class UsersController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Get('protected')
-    getHello(): string {
-        return 'Hello There';
+    @Patch()
+    update(@Body() updateUserDto: UpdateUserDto) {
+        return this.usersService.update(updateUserDto);
     }
 }

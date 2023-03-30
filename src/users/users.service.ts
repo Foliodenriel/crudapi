@@ -1,10 +1,11 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
+import { AuthService } from 'src/auth/auth.service';
 
 @Injectable()
 export class UsersService {
@@ -26,7 +27,19 @@ export class UsersService {
         return this.usersRepository.save(newUser);
     }
 
-    async login(createUserDto: CreateUserDto) {}
+    async update(updateUserDto: UpdateUserDto) {
+        const user = await this.findOneByLogin(updateUserDto.login);
+        if (!user) throw new UnauthorizedException();
+        const salt = await bcrypt.genSalt();
+        const hashPassword = await bcrypt.hash(updateUserDto.password, salt);
+
+        user.password = hashPassword;
+        this.usersRepository.save(user);
+        return {
+            "statusCode": "200",
+            "message": "User updated successfully."
+        };
+    }
 
     findOneByLogin(login: string): Promise<User> {
         const cUser = this.usersRepository.findOneBy({ login });
