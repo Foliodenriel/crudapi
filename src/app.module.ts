@@ -3,12 +3,12 @@ import { UsersModule } from './users/users.module';
 import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
 import { User } from './users/entities/user.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -33,6 +33,6 @@ import { AppController } from './app.controller';
     UsersModule,
     AuthModule],
   controllers: [UsersController, AppController],
-  providers: [UsersService, AuthService],
+  providers: [UsersService, AuthService, JwtService],
 })
 export class AppModule {}
