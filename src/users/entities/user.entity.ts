@@ -1,3 +1,4 @@
+import { IsEmail, MinLength } from "class-validator";
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
@@ -6,9 +7,11 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @IsEmail()
     @Column()
     login: string;
 
+    @MinLength(4)
     @Column()
     password: string;
 

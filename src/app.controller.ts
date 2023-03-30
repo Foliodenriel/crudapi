@@ -4,6 +4,11 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
 @Controller()
 export class AppController {
 
+    @Get()
+    getDocumentation() {
+        return 'For more information: ';
+    }
+
     @UseGuards(JwtAuthGuard)
     @Get('product')
     getProduct(@Body() req) {
