@@ -6,21 +6,23 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('users')
 export class UsersController {
-  private logger: Logger;
-  constructor(private readonly usersService: UsersService) {
-    this.logger = new Logger();
-  }
+    constructor(private readonly usersService: UsersService) {}
 
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
-  }
+    @Post()
+    create(@Body() createUserDto: CreateUserDto) {
+        return this.usersService.create(createUserDto);
+    }
 
-  @UseGuards(JwtAuthGuard)
-  @Get('protected')
-  getHello(): string {
-    return 'Hello There';
-  }
+    @UseGuards(JwtAuthGuard)
+    @Get('protected')
+    getHello(): string {
+        return 'Hello There';
+    }
+
+    // @Get(':id')
+    // findOne(@Param('id') id: string) {
+    //     return this.usersService.findOne(+id);
+    // }
 
   // @Get()
   // findAll() {
