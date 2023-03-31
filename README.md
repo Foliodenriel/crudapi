@@ -7,6 +7,21 @@ The requirements for this project are the followings:
 
 ---
 
+## **Configuration**
+
+You must create a `.env` or `.dev.env` file with following environment variables setup for database connection and jwt encryption key.
+
+```bash
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=dbtest
+DB_USERNAME=test
+DB_PASSWORD=test
+JWT_SECRET=secret
+```
+
+---
+
 ## **Routes**
 
 Some routes require a valid JSON Web Token (JWT) in order to get accessible.
@@ -14,7 +29,7 @@ Routes marked as PUBLIC are accessible without this token unlike PRIVATE routes 
 This token should be passed through 
 
 **PUBLIC** - `[POST] /users` : Creates new user if login is not already taken
-```
+```json
 {
     "login": "yourvalidemail@gmail.com",
     "password: "your_4_char_password"
@@ -23,7 +38,7 @@ This token should be passed through
 
 
 **PRIVATE** - `[PATCH] /users` : Allow user to update his password using valid token and login
-```
+```json
 {
     "username": "yourvalidemail@gmail.com",
     "password: "your_4_char_password"
@@ -32,7 +47,7 @@ This token should be passed through
 
 
 **PUBLIC** - `[POST] /auth/generateToken` : Generates a 5 minutes valid token to access specific routes
-```
+```json
 {
     "username": "yourvalidemail@gmail.com",
     "password": "your_password"
@@ -41,7 +56,7 @@ This token should be passed through
 
 
 **PRIVATE** - `[GET] /product` : Get product information based on barcode number using OpenFoodFact API
-```
+```json
 {
     "product": "7622210449283",
 }
