@@ -9,9 +9,13 @@ The requirements for this project are the followings:
 
 ## **Configuration**
 
-You must create a `.env` or `.dev.env` file with following environment variables setup for database connection and jwt encryption key.
+First, install dependencies with a classic
 
-```bash
+`npm install`
+
+You must create a root `.env` or `.dev.env` file with following environment variables setup for database connection and jwt encryption key.
+
+```shell
 DB_HOST=localhost
 DB_PORT=3306
 DB_NAME=dbtest
@@ -20,13 +24,16 @@ DB_PASSWORD=test
 JWT_SECRET=secret
 ```
 
+A database must be created and should have the same name as `DB_NAME`.
+Migration is not implemented yet, but would be able to fix manual creation of database.
+
 ---
 
 ## **Routes**
 
 Some routes require a valid JSON Web Token (JWT) in order to get accessible.
 Routes marked as PUBLIC are accessible without this token unlike PRIVATE routes which requires it.
-This token should be passed through 
+This token should be passed through Bearer Token.
 
 **PUBLIC** - `[POST] /users` : Creates new user if login is not already taken
 ```json
