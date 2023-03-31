@@ -7,7 +7,7 @@ The requirements for this project are the followings:
 
 ---
 
-##### **Routes**
+## **Routes**
 
 Some routes require a valid JSON Web Token (JWT) in order to get accessible.
 Routes marked as PUBLIC are accessible without this token unlike PRIVATE routes which requires it.
@@ -48,3 +48,10 @@ This token should be passed through
 ```
 
 ---
+
+## **Project improvement**
+
+- [] Turn off the **synchronize** option in `app.module.ts` and implement database migration.
+- [] Implement relevant unit tests on services for further updates.
+- [] Use external file **data-source** configuration to avoid modifying shared file for collaborators.
+- [] Create route for user deletion using token (only turn to false **isActive** in user attribute).

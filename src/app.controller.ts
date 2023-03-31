@@ -6,7 +6,7 @@ export class AppController {
 
     @Get()
     getDocumentation() {
-        return 'For more information: ';
+        return 'For more information: https://github.com/Foliodenriel/crudapi/blob/main/README.md';
     }
 
     @UseGuards(JwtAuthGuard)
