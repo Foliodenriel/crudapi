@@ -1,9 +1,10 @@
 This is a small project of a NestJS API.
 The requirements for this project are the followings:
 
+- NodeJS
 - npm
 - mysql (or any other database service handled by NestJS)
-- NestJS framework (npm i -g @nestjs/cli)
+- [Only needed for development] NestJS framework (npm i -g @nestjs/cli)
 
 ---
 
