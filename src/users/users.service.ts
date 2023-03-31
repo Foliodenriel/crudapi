@@ -27,12 +27,14 @@ export class UsersService {
         return this.usersRepository.save(newUser);
     }
 
-    async update(updateUserDto: UpdateUserDto) {
-        const user = await this.findOneByLogin(updateUserDto.login);
-        if (!user) throw new UnauthorizedException();
+    async update(id: number, updateUserDto: UpdateUserDto) {
+        const user = await this.findOneById(id);
+        const dUser = await this.findOneByLogin(updateUserDto.login); // Used to check for duplicates
+        if (!user || (dUser && id != dUser.id)) throw new UnauthorizedException();
         const salt = await bcrypt.genSalt();
         const hashPassword = await bcrypt.hash(updateUserDto.password, salt);
 
+        user.login = updateUserDto.login;
         user.password = hashPassword;
         this.usersRepository.save(user);
         return {
@@ -42,12 +44,12 @@ export class UsersService {
     }
 
     findOneByLogin(login: string): Promise<User> {
-        const cUser = this.usersRepository.findOneBy({ login });
+        const cUser = this.usersRepository.findOneBy({ login: login });
         return cUser;
     }
 
     findOneById(id: number) {
-        const cUser = this.usersRepository.findOneBy({ id });
+        const cUser = this.usersRepository.findOneBy({ id: id });
         return cUser;
     }
 

@@ -13,9 +13,10 @@ export class AuthService {
     ) {}
 
     async login(user: any) {
-        const cUser = await this.usersService.findOneById(user.id);
+        const cUser = await this.usersService.findOneByLogin(user.username);
+        if (!cUser) throw new UnauthorizedException();
         const cmpPass = await bcrypt.compare(user.password, cUser.password);
-        if (!user || !cmpPass || !cUser.isActive)
+        if (!cUser || !cmpPass || !cUser.isActive)
             throw new UnauthorizedException();
         const payload = { login: cUser.login, sub: cUser.id };
         return {
