@@ -32,7 +32,7 @@ This token should be passed through
 ```json
 {
     "login": "yourvalidemail@gmail.com",
-    "password: "your_4_char_password"
+    "password": "your_password"
 }
 ```
 
@@ -40,8 +40,8 @@ This token should be passed through
 **PRIVATE** - `[PATCH] /users` : Allow user to update his password using valid token and login
 ```json
 {
-    "username": "yourvalidemail@gmail.com",
-    "password: "your_4_char_password"
+    "login": "yourvalidemail@gmail.com",
+    "password": "your_password"
 }
 ```
 
